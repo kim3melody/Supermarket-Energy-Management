@@ -5,15 +5,16 @@ Created on Tue Mar 08 09:44:44 2016
 @author: czhang0914
 """
 
+# EGNJ is replaced by EGXP !!!
 import os
 import pandas as pd
 
 
 # Set the location of CDD files, you'll find the result in the same folder
 CDDfolder=r'C:\Users\czhang0914\Downloads\CDD'
-startofweek=20170123
-endofweek=20170129
-TargetFileName=r'Week52cddSUM.xlsx'
+startofweek=20170401
+endofweek=20170430
+TargetFileName=r'Apr_cdd_EGXP as EGNJ.xlsx'
 
 # Change working directory to collect CDD values from each file
 os.chdir(CDDfolder)
@@ -40,7 +41,7 @@ s=df.append(df.sum(numeric_only=True), ignore_index=True)
 s=s.loc[[7]]
 s=s.T
 s.columns=[startofweek]
-s.index.names = ['2016 CDD']
+s.index.names = ['2017 CDD']
 
 with pd.ExcelWriter(TargetFileName) as writer:
     s.to_excel(writer,sheet_name='weekly cdd total') 

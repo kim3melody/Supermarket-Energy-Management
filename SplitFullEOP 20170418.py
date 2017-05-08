@@ -6,11 +6,11 @@ import os
 
 os.chdir(r'C:\Users\czhang0914\Downloads')
 
-csvfilename='ECM_20170418_153923.csv'
-targetfilename='SplitFullEOP0418_0940am.xlsx'
-Today=pd.Timestamp(dt.datetime(2017,4,18,0,0,0))
+csvfilename='ECM_20170508_205810.csv'
+targetfilename='SplitFullEOP0508.xlsx'
+Today=pd.Timestamp(dt.datetime(2017,5,8,0,0,0))
 
-fullEOP=pd.read_csv(csvfilename,sep=';',parse_dates=[11,12,13,19,34],dayfirst=True,encoding='utf-16')
+fullEOP=pd.read_csv(csvfilename,sep=';',parse_dates=['ECM Creation Date', 'Identification Date', 'Implementation Date', 'Last Save Date','Last Implementation Date'],dayfirst=True,encoding='utf-16')
 cnames=list(fullEOP.columns.values)
 #SiteContract=pd.read_excel('SiteContractList.xlsx',index_col=0)
 
@@ -28,7 +28,8 @@ sh=statehistory.iloc[:,[0,1,4,5]]
 #sh.iloc[:,[1,5]]=sh.iloc[:,[1,5]].apply(pd.to_datetime,dayfirst=True)
 sh.columns=['StateHistory First Record','StateHistory First Record Date','StateHistory Second Record','StateHistory Second Record Date']
 
-stats=fullEOP.iloc[:,[0,1,5,6,10,11,12,15,16,17,7]].copy()
+EOP_columns = ['Code', 'Site ID', 'ECM Category', 'Type Code', 'State', 'ECM Creation Date', 'Identification Date', 'Corrective Action', 'Estimated Consumption kWh', 'Estimated Cost £', 'Energy']
+stats=fullEOP[EOP_columns].copy()
 stats=pd.concat([stats,sh],axis=1)
 description = fullEOP.iloc[:,[0,1,2,3,4,5,6,7,8,14,15]].copy()
 #stats.ix[stats['Implementation Date'].isnull(),'Implementation Date']=stats['StateHistory First Record Date']

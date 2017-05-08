@@ -8,9 +8,9 @@ Created on Wed Oct  5 14:04:01 2016
 import pandas as pd
 import os
 
-path=r'C:\Users\czhang0914\Desktop\Monthly Report Data\Dec data 2016'
-GasData=r'M395 Dec data 2016.xlsx'
-TargetFileName=r'GasDataEstimation M395 Dec2016.xlsx'
+path=r'C:\Users\czhang0914\Desktop\Monthly Report Data\Apr data 2017'
+GasData=r'M105 Apr data 2017.xlsx'
+TargetFileName=r'GasDataEstimation M105 Apr2017.xlsx'
 
 os.chdir(path)
 path = os.getcwd()
